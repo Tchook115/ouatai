@@ -48,6 +48,13 @@ def plt_show(filename=None, dpi=None, autoscale=None, rect=None):
         plt.savefig(filename, dpi=dpi)
     plt.show()
 
+def plt_save(filename, dpi=None, autoscale=None, rect=None):
+    if autoscale:
+        plt.autoscale(tight=True)
+    plt.tight_layout(rect=rect)
+    if filename:
+        plt.savefig(filename, dpi=dpi)
+
 
 def update_progress(progress, bar_length=20):
     """
