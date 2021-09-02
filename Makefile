@@ -1,55 +1,51 @@
-# ----------------------------------
-#          INSTALL & TEST
-# ----------------------------------
-install_requirements:
-	@pip install -r requirements.txt
 
-check_code:
-	@flake8 scripts/* ouatai/*.py
 
-black:
-	@black scripts/* ouatai/*.py
+### GCP configuration - - - - - - - - - - - - - - - - - - -
+# /!\ you should fill these according to your account
+### GCP Project - - - - - - - - - - - - - - - - - - - - - -
 
-test:
-	@coverage run -m pytest tests/*.py
-	@coverage report -m --omit="${VIRTUAL_ENV}/lib/python*"
+# not required here
+### GCP Storage - - - - - - - - - - - - - - - - - - - - - -
+BUCKET_NAME=wagon-data-677-noyer
+##### Data  - - - - - - - - - - - - - - - - - - - - - - - -
+BUCKET_TRAIN_DATA_RAW: quickdraw_dataset
+##### Training  - - - - - - - - - - - - - - - - - - - - - -
+# will store the packages uploaded to GCP for the training
+BUCKET_TRAINING_FOLDER = 'trainings'
+##### Model - - - - - - - - - - - - - - - - - - - - - - - -
+# not required here
+### GCP AI Platform - - - - - - - - - - - - - - - - - - - -
+##### Machine configuration - - - - - - - - - - - - - - - -
+REGION=europe-west1
 
-ftest:
-	@Write me
+PYTHON_VERSION=3.7
+FRAMEWORK=TensorFlow
+RUNTIME_VERSION=2.5
+
+##### Package params  - - - - - - - - - - - - - - - - - - -
+PACKAGE_NAME=ouatai
+FILENAME=trainer
+
+##### Job - - - - - - - - - - - - - - - - - - - - - - - - -
+
+JOB_NAME=ouatai_pipeline_$(shell date +'%Y%m%d_%H%M%S')
+
+run_locally:
+	@python -m ${PACKAGE_NAME}.${FILENAME}
+
+gcp_submit_training:
+	gcloud ai-platform jobs submit training ${JOB_NAME} \
+		--job-dir gs://${BUCKET_NAME}/${BUCKET_TRAINING_FOLDER} \
+		--package-path ${PACKAGE_NAME} \
+		--module-name ${PACKAGE_NAME}.${FILENAME} \
+		--python-version=${PYTHON_VERSION} \
+		--runtime-version=${RUNTIME_VERSION} \
+		--region ${REGION} \
+		--stream-logs
 
 clean:
 	@rm -f */version.txt
 	@rm -f .coverage
-	@rm -fr */__pycache__ */*.pyc __pycache__
-	@rm -fr build dist
-	@rm -fr ouatai-*.dist-info
-	@rm -fr ouatai.egg-info
-
-install:
-	@pip install . -U
-
-all: clean install test black check_code
-
-count_lines:
-	@find ./ -name '*.py' -exec  wc -l {} \; | sort -n| awk \
-        '{printf "%4s %s\n", $$1, $$2}{s+=$$0}END{print s}'
-	@echo ''
-	@find ./scripts -name '*-*' -exec  wc -l {} \; | sort -n| awk \
-		        '{printf "%4s %s\n", $$1, $$2}{s+=$$0}END{print s}'
-	@echo ''
-	@find ./tests -name '*.py' -exec  wc -l {} \; | sort -n| awk \
-        '{printf "%4s %s\n", $$1, $$2}{s+=$$0}END{print s}'
-	@echo ''
-
-# ----------------------------------
-#      UPLOAD PACKAGE TO PYPI
-# ----------------------------------
-PYPI_USERNAME=<AUTHOR>
-build:
-	@python setup.py sdist bdist_wheel
-
-pypi_test:
-	@twine upload -r testpypi dist/* -u $(PYPI_USERNAME)
-
-pypi:
-	@twine upload dist/* -u $(PYPI_USERNAME)
+	@rm -fr */__pycache__ __pycache__
+	@rm -fr build dist *.dist-info *.egg-info
+	@rm -fr */*.pyc
