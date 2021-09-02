@@ -29,8 +29,9 @@ joblib
 #termcolor
 
 #OUATAI
+google.cloud
 #sys
 #os
 #math
 #time
-tensorflow
+#tensorflow
