@@ -1,3 +1,6 @@
+import numpy as np
+from google.cloud import storage
+
 BUCKET_NAME: "wagon-data-677-noyer"
 BUCKET_TRAIN_DATA_NAME: "quickdraw_dataset"
 from _typeshed import Self
@@ -6,18 +9,23 @@ import math
 import os
 import numpy as np
 
-class Trainer():
     def __init__(self, category):
         self.category = category
 
-
     def get_data(list):
         """ function used in order to get the training data (or a portion of it) from bucket : quickdraw_dataset """
-        printi = f'gathering these models dataset: {list}'
-        return printi
+        #input : nom d'une categorie
+        #output : return 3 variable : train, valid,test
+        client = storage.Client()
+        bucket = client.get_bucket('<your-bucket-name>')
+        blob = bucket.blob('my-test-file.txt')
+        blob.upload_from_string('this is test content!')
+        !gsutil cp gs://quickdraw_dataset/sketchrnn/{category_name}.npz .
+        data = np.load(f'{category_name}.npz',encoding='latin1',allow_pickle=True)
 
     def preprocess(df):
         """ function that pre-processes the data """
+        #input : variables data_train et data_
         printi = f'prepcessing data'
         return printi
 
