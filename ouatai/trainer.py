@@ -35,6 +35,7 @@ class Trainer():
         blob.upload_from_filename(self.checkpoint)
 
     def copy_to_local(self):
+
         storage_client = storage.Client()
         bucket = storage_client.bucket(BUCKET_TRAIN_DATA)
         blob = bucket.blob(BLOB_TRAIN_DATA)
@@ -87,15 +88,14 @@ class Trainer():
 if __name__ == '__main__':
 ### GOOGLE STORAGE INFO ###
     BUCKET_TRAIN_DATA = "quickdraw_dataset"
-    BLOB_TRAIN_DATA = "sketchrnn"
     BUCKET_NAME = "wagon-data-677-noyer"
-    BLOB_MODEL = 'models/'
     WORKING_FOLDERS = ['npz_repo','checkpoints','logs']
 ### MODEL LIST TO TRAIN ###
     modellist = ['axe']
 ### SCRIPT ###
     #Start training loop over model list
     for model in modellist:
+        BLOB_TRAIN_DATA = f"sketchrnn/{model}.npz"
         #Instantiate Trainer
         trainer = Trainer(model)
         print(f"### Training start for model {model} ###\n")
@@ -109,6 +109,7 @@ if __name__ == '__main__':
         preproc = trainer.preprocess_data(modeltotrain[0],modeltotrain[1], modeltotrain[3])
         #train model
         trainer.train_model(preproc[0], preproc[1], modeltotrain[2],modeltotrain[3])
+        BLOB_MODEL = trainer.category
         #upload model trained back to gstorage
         trainer.copy_to_gcp()
         #Delete directories content
