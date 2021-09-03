@@ -43,7 +43,7 @@ gcp_submit_training:
 		--region ${REGION} \
 		--stream-logs \
 		--scale-tier=custom \
-		--master-machine-type=n1-standard-8 
+		--master-machine-type=n1-highcpu-16
 
 clean:
 	@rm -f */version.txt
