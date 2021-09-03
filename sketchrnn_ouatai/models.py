@@ -247,7 +247,7 @@ class SketchRNN(object):
                     metrics["cost"].result(),
                 )
             )
-            if epoch == 1:
+            if epoch == 100:
                 model.save_weights(checkpoint.format(epoch))
 
             for metric in metrics.values():
@@ -352,4 +352,3 @@ def sample_gaussian_2d(mu1, mu2, s1, s2, rho, temp=1.0, greedy=False):
     cov = [[s1 * s1, rho * s1 * s2], [rho * s1 * s2, s2 * s2]]
     x = np.random.multivariate_normal(mean, cov, 1)
     return x[0]
-
