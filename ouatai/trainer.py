@@ -39,7 +39,6 @@ class Trainer():
         blob.upload_from_filename(localpthfile)
 
     def copy_to_local(self):
-
         storage_client = storage.Client()
         bucket = storage_client.bucket(BUCKET_TRAIN_DATA)
         blob = bucket.blob(BLOB_TRAIN_DATA)
@@ -86,7 +85,7 @@ class Trainer():
         #initial_loss = 0.05
         checkpoint_dir = './checkpoints'
         #log_dir = 'logs'
-        self.checkpoint = os.path.join(checkpoint_dir, 'sketch_rnn_' + self.category + '_weights.{:02d}.hdf5')
+        self.checkpoint = os.path.join(checkpoint_dir, 'sketch_rnn_' + self.category + '_weights.{}.hdf5')
         sketchrnn.train(initial_epoch, train_dataset, val_dataset, self.checkpoint)
 
 if __name__ == '__main__':
@@ -95,7 +94,7 @@ if __name__ == '__main__':
     BUCKET_NAME = "wagon-data-677-noyer"
     WORKING_FOLDERS = ['npz_repo','checkpoints','logs']
 ### MODEL LIST TO TRAIN ###
-    categorielist = ['bulldozer']
+    categorielist = ['bulldozer','angel','banana','bear','bench']
 ### SCRIPT ###
     #Start training loop over model list
     for categorie in categorielist:

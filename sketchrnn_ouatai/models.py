@@ -247,7 +247,7 @@ class SketchRNN(object):
                     metrics["cost"].result(),
                 )
             )
-            if epoch == 1:
+            if epoch == 100:
                 model.save_weights(checkpoint.format(epoch))
 
             for metric in metrics.values():
