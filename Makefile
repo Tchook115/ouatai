@@ -6,7 +6,7 @@
 
 # not required here
 ### GCP Storage - - - - - - - - - - - - - - - - - - - - - -
-BUCKET_NAME=wagon-data-677-noyer
+BUCKET_NAME=wagon-data-677-bernard
 ##### Data  - - - - - - - - - - - - - - - - - - - - - - - -
 BUCKET_TRAIN_DATA_RAW: quickdraw_dataset
 ##### Training  - - - - - - - - - - - - - - - - - - - - - -
@@ -43,7 +43,7 @@ gcp_submit_training:
 		--region ${REGION} \
 		--stream-logs \
 		--scale-tier=custom \
-		--master-machine-type=n1-standard-8 
+		--master-machine-type=n1-standard-8
 
 clean:
 	@rm -f */version.txt

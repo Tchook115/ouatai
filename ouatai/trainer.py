@@ -28,7 +28,7 @@ class Trainer():
                         shutil.rmtree(file_path)
                 except Exception as e:
                     print('Failed to delete %s. Reason: %s' % (file_path, e))
-    
+
     def copy_to_gcp(self):
         filename = f'sketch_rnn_{self.category}_weights.{self.epochnb}.hdf5'
         localpthfile = f'./checkpoints/{filename}'
@@ -69,7 +69,7 @@ class Trainer():
             "grad_clip": 1.0,
             'kl_tolerance': 0.2,
             'kl_decay_rate': 0.99995,
-            "kl_weight": 0.5, 
+            "kl_weight": 0.5,
             'kl_weight_start': 0.01,}
         return data_train, data_valid, data_test,hps
 
@@ -92,10 +92,10 @@ class Trainer():
 if __name__ == '__main__':
 ### GOOGLE STORAGE INFO ###
     BUCKET_TRAIN_DATA = "quickdraw_dataset"
-    BUCKET_NAME = "wagon-data-677-noyer"
+    BUCKET_NAME = "wagon-data-677-bernard"
     WORKING_FOLDERS = ['npz_repo','checkpoints','logs']
 ### MODEL LIST TO TRAIN ###
-    categorielist = ['bulldozer']
+    categorielist = ['airplane']
 ### SCRIPT ###
     #Start training loop over model list
     for categorie in categorielist:
@@ -104,7 +104,7 @@ if __name__ == '__main__':
         trainer = Trainer(categorie)
         print(f"### Training start for model {categorie} ###")
 
-        #Create working directories in the running VM in case they doesn't exist 
+        #Create working directories in the running VM in case they doesn't exist
         print(f"### Start create_working_directories ###")
         trainer.create_working_directories(WORKING_FOLDERS)
         print(f"done.\n")
