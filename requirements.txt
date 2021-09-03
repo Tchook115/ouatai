@@ -33,5 +33,4 @@ joblib
 #os
 #math
 #time
-tensorflow
-git+https://github.com/stwind/SketchRNN_tf2
+tensorflow>=2.5.1

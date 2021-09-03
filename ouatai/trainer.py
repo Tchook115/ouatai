@@ -1,10 +1,11 @@
 BUCKET_NAME: "wagon-data-677-noyer"
 BUCKET_TRAIN_DATA_NAME: "quickdraw_dataset"
 from _typeshed import Self
-from sketchrnn import models
+from sketchrnn_ouatai import models
 import math
 import os
 import numpy as np
+import google.cloud import storage
 
 class Trainer():
     def __init__(self, category):
@@ -46,11 +47,11 @@ class Trainer():
         sketchrnn = models.SketchRNN(hps)
         initial_epoch = 0
         initial_loss = 0.05
-        checkpoint_dir = BUCKET_NAME
 
+        client = storage.Client()
+        bucket = client.get_bucket(BUCKET_NAME)
+        checkpoint = bucket.blob(f'models/{self.category}')
 
-        #log_dir = '/content/gdrive/My Drive/sketchrnn/logs'
-        checkpoint = os.path.join(checkpoint_dir, 'sketch_rnn_' + self.category + '_weights.{:02d}_{:.2f}.hdf5')
         sketchrnn.train(initial_epoch, train_dataset, val_dataset, checkpoint)
 
 
