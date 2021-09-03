@@ -115,7 +115,7 @@ class SketchRNN(object):
 
     def load_weights(self, path):
         self.models["full"].load_weights(path)
-        print("Loaded Weights From: {}".format(path))
+        #print("Loaded Weights From: {}".format(path))
 
     def sample(self, temperature=1.0, greedy=False, z=None):
         seq_len = self.hps["max_seq_len"]
@@ -352,4 +352,3 @@ def sample_gaussian_2d(mu1, mu2, s1, s2, rho, temp=1.0, greedy=False):
     cov = [[s1 * s1, rho * s1 * s2], [rho * s1 * s2, s2 * s2]]
     x = np.random.multivariate_normal(mean, cov, 1)
     return x[0]
-
