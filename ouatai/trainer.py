@@ -8,26 +8,32 @@ from sketchrnn_ouatai import models, dataset, utils
 BUCKET_TRAIN_DATA: "quickdraw_dataset"
 BLOB_TRAIN_DATA = "sketchrnn"
 BUCKET_NAME: "wagon-data-677-noyer"
-BLOB_MODEL = 'models/'
+BUCKET_TRAIN_DATA_NAME: "quickdraw_dataset"
+from _typeshed import Self
+from sketchrnn import models
+import math
+import os
+import numpy as np
 
-def create_working_directories(self,dirs):
-    for item in dirs:
-        if not os.path.exists(item):
-            os.mkdir(item)
-            return True
-        else:
-            return False
-
-class Trainer():
     def __init__(self, category):
         self.category = category
-        self.checkpoint = None
 
-    def upload_model_to_gcp(self):
+    def get_data(list):
+        """ function used in order to get the training data (or a portion of it) from bucket : quickdraw_dataset """
+        #input : nom d'une categorie
+        #output : return 3 variable : train, valid,test
         client = storage.Client()
-        bucket = client.bucket(BUCKET_NAME)
-        blob = bucket.blob(BLOB_MODEL)
-        blob.upload_from_filename(self.checkpoint)
+        bucket = client.get_bucket('<your-bucket-name>')
+        blob = bucket.blob('my-test-file.txt')
+        blob.upload_from_string('this is test content!')
+        !gsutil cp gs://quickdraw_dataset/sketchrnn/{category_name}.npz .
+        data = np.load(f'{category_name}.npz',encoding='latin1',allow_pickle=True)
+
+    def preprocess(df):
+        """ function that pre-processes the data """
+        #input : variables data_train et data_
+        printi = f'prepcessing data'
+        return printi
 
     def copy_to_local(self):
         storage_client = storage.Client()
@@ -50,6 +56,9 @@ class Trainer():
         printi = f'prepcessing data'
         return printi
 
+        #log_dir = '/content/gdrive/My Drive/sketchrnn/logs'
+        checkpoint = os.path.join(checkpoint_dir, 'sketch_rnn_' + self.category + '_weights.{:02d}_{:.2f}.hdf5')
+        sketchrnn.train(initial_epoch, train_dataset, val_dataset, checkpoint)
 
     def train_model(self, train_dataset, val_dataset, test_dataset):
         """ function that trains the model """
