@@ -1,39 +1,38 @@
 import numpy as np
-import os
+import os, shutil
 import math
 from google.cloud import storage
 from sketchrnn_ouatai import models, dataset, utils
 
-
-BUCKET_TRAIN_DATA: "quickdraw_dataset"
-BLOB_TRAIN_DATA = "sketchrnn"
-BUCKET_NAME: "wagon-data-677-noyer"
-BUCKET_TRAIN_DATA_NAME: "quickdraw_dataset"
-from _typeshed import Self
-from sketchrnn import models
-import math
-import os
-import numpy as np
-
+class Trainer():
     def __init__(self, category):
         self.category = category
+        self.checkpoint = None
 
-    def get_data(list):
-        """ function used in order to get the training data (or a portion of it) from bucket : quickdraw_dataset """
-        #input : nom d'une categorie
-        #output : return 3 variable : train, valid,test
+    def create_working_directories(self,dirs):
+        for item in dirs:
+            if not os.path.exists(item):
+                os.mkdir(item)
+                return f'"{item}" folder created.\n'
+
+    def delete_folder_content(self,dirs):
+        for item in dirs:
+            folder = f'./{item}'
+            for filename in os.listdir(folder):
+                file_path = os.path.join(folder, filename)
+                try:
+                    if os.path.isfile(file_path) or os.path.islink(file_path):
+                        os.unlink(file_path)
+                    elif os.path.isdir(file_path):
+                        shutil.rmtree(file_path)
+                except Exception as e:
+                    print('Failed to delete %s. Reason: %s' % (file_path, e))
+    
+    def copy_to_gcp(self):
         client = storage.Client()
-        bucket = client.get_bucket('<your-bucket-name>')
-        blob = bucket.blob('my-test-file.txt')
-        blob.upload_from_string('this is test content!')
-        !gsutil cp gs://quickdraw_dataset/sketchrnn/{category_name}.npz .
-        data = np.load(f'{category_name}.npz',encoding='latin1',allow_pickle=True)
-
-    def preprocess(df):
-        """ function that pre-processes the data """
-        #input : variables data_train et data_
-        printi = f'prepcessing data'
-        return printi
+        bucket = client.bucket(BUCKET_NAME)
+        blob = bucket.blob(BLOB_MODEL)
+        blob.upload_from_filename(self.checkpoint)
 
     def copy_to_local(self):
         storage_client = storage.Client()
@@ -49,23 +48,10 @@ import numpy as np
         data_train = [dataset.cleanup(d) for d in data['train']]
         data_valid = [dataset.cleanup(d) for d in data['valid']]
         data_test = [dataset.cleanup(d) for d in data['test']]
-        return data_train, data_valid, data_test
-
-    def preprocess(df):
-        """ function that pre-processes the data """
-        printi = f'prepcessing data'
-        return printi
-
-        #log_dir = '/content/gdrive/My Drive/sketchrnn/logs'
-        checkpoint = os.path.join(checkpoint_dir, 'sketch_rnn_' + self.category + '_weights.{:02d}_{:.2f}.hdf5')
-        sketchrnn.train(initial_epoch, train_dataset, val_dataset, checkpoint)
-
-    def train_model(self, train_dataset, val_dataset, test_dataset):
-        """ function that trains the model """
         hps = {
-            "max_seq_len": max(map(len, np.concatenate([train_dataset, val_dataset, test_dataset]))),
+            "max_seq_len": max(map(len, np.concatenate([data_train, data_valid, data_test]))),
             'batch_size': 100,
-            "num_batches": math.ceil(len(train_dataset) / 100),
+            "num_batches": math.ceil(len(data_train) / 100),
             "epochs": 100,
             "recurrent_dropout_prob": 0.1, ## 0.0 for gpu lstm
             "enc_rnn_size": 256,
@@ -79,43 +65,54 @@ import numpy as np
             'kl_tolerance': 0.2,
             'kl_decay_rate': 0.99995,
             "kl_weight": 0.5,
-            'kl_weight_start': 0.01,
-        }
+            'kl_weight_start': 0.01,}
+        return data_train, data_valid, data_test,hps
+
+    def preprocess_data(self,data_train,data_valid, hps):
+        scale_factor = dataset.calc_scale_factor(data_train)
+        train_dataset = dataset.make_train_dataset(data_train, hps['max_seq_len'], hps['batch_size'], scale_factor)
+        val_dataset = dataset.make_val_dataset(data_valid, hps['max_seq_len'], hps['batch_size'], scale_factor)
+        return train_dataset,val_dataset
+
+    def train_model(self, train_dataset, val_dataset, hps):
+        """ function that trains the model """
         sketchrnn = models.SketchRNN(hps)
         initial_epoch = 0
-        initial_loss = 0.05
+        #initial_loss = 0.05
         checkpoint_dir = 'checkpoints'
-        log_dir = 'logs'
+        #log_dir = 'logs'
         self.checkpoint = os.path.join(checkpoint_dir, 'sketch_rnn_' + self.category + '_weights.{:02d}.hdf5')
         sketchrnn.train(initial_epoch, train_dataset, val_dataset, self.checkpoint)
 
-
-    def save_model(reg):
-        """ method that saves the model into a .joblib file and uploads it on Google Storage /models folder """
-        printi = f'saving model'
-        return printi
-
-    def pipeline_generator():
-        """function used to generate a pipeline for cleaning and training categories gathered in get_data(). Tasks are parallelized between categories"""
-        printi = f'creating pipeline'
-        return printi
-
-    def check_existing_trainings():
-        printi = f'this category doesnt exist'
-        return printi
-
 if __name__ == '__main__':
-    trainer = Trainer('axe')
-    print(" runs a training ")
-    create_working_directories(['npz_repo','checkpoints','logs'])
-
-    #copy npz file to local VM
-    trainer.copy_to_local()
-
-    #train model
-    trainer.train_model(self, train_dataset, val_dataset, test_dataset)
-    
-    #upload to gstorage
-    trainer.upload_model_to_gcp()
-
-    #Delete directories content
+### GOOGLE STORAGE INFO ###
+    BUCKET_TRAIN_DATA = "quickdraw_dataset"
+    BLOB_TRAIN_DATA = "sketchrnn"
+    BUCKET_NAME = "wagon-data-677-noyer"
+    BLOB_MODEL = 'models/'
+    WORKING_FOLDERS = ['npz_repo','checkpoints','logs']
+### MODEL LIST TO TRAIN ###
+    modellist = ['axe']
+### SCRIPT ###
+    #Start training loop over model list
+    for model in modellist:
+        #Instantiate Trainer
+        trainer = Trainer(model)
+        print(f"### Training start for model {model} ###\n")
+        #Create working directories in the running VM in case they doesn't exist 
+        trainer.create_working_directories(WORKING_FOLDERS)
+        #copy npz file to local VM
+        trainer.copy_to_local()
+        #Prepare data
+        modeltotrain = trainer.get_data()
+        #Preprocess data
+        preproc = trainer.preprocess_data(modeltotrain[0],modeltotrain[1], modeltotrain[3])
+        #train model
+        trainer.train_model(preproc[0], preproc[1], modeltotrain[2],modeltotrain[3])
+        #upload model trained back to gstorage
+        trainer.copy_to_gcp()
+        #Delete directories content
+        trainer.delete_folder_content(WORKING_FOLDERS)
+        print(f"### Model {model} trained and stored in bucket {BUCKET_NAME}/{BLOB_MODEL} ###\n")
+    for item in WORKING_FOLDERS:
+        shutil.rmtree(f'./{WORKING_FOLDERS}')
