@@ -34,15 +34,17 @@ run_locally:
 	@python -m ${PACKAGE_NAME}.${FILENAME}
 
 gcp_submit_training:
-  gcloud ai-platform jobs submit training ${JOB_NAME} \
-    --job-dir gs://${BUCKET_NAME}/${BUCKET_TRAINING_FOLDER} \
-    --package-path ${PACKAGE_NAME} \
-    --module-name ${PACKAGE_NAME}.${FILENAME} \
-    --python-version=${PYTHON_VERSION} \
-    --runtime-version=${RUNTIME_VERSION} \
-    --region ${REGION} \
-    --stream-logs \
-    --scale-tier=BASIC_GPU
+	gcloud ai-platform jobs submit training ${JOB_NAME} \
+		--job-dir gs://${BUCKET_NAME}/${BUCKET_TRAINING_FOLDER} \
+		--package-path ${PACKAGE_NAME} \
+		--module-name ${PACKAGE_NAME}.${FILENAME} \
+		--python-version=${PYTHON_VERSION} \
+		--runtime-version=${RUNTIME_VERSION} \
+		--region ${REGION} \
+		--stream-logs \
+		--scale-tier=BASIC_GPU
+		#--master-machine-type=a2-highgpu-1g \
+		#--acceleratorConfig=NVIDIA_TESLA_A100
 
 clean:
 	@rm -f */version.txt
