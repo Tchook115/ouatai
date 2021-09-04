@@ -57,7 +57,7 @@ class Trainer():
             'batch_size': 100, #100
             "num_batches": math.ceil(len(data_train) / 100),
             "epochs": self.epochnb, #100
-            "recurrent_dropout_prob": 0.1, ## 0.0 for gpu lstm
+            "recurrent_dropout_prob": 0.0, ## 0.0 for gpu lstm
             "enc_rnn_size": 256, #256
             "dec_rnn_size": 512, #512
             "z_size": 128, #128
@@ -94,7 +94,7 @@ if __name__ == '__main__':
     BUCKET_NAME = "wagon-data-677-noyer"
     WORKING_FOLDERS = ['npz_repo','checkpoints','logs']
 ### MODEL LIST TO TRAIN ###
-    categorielist = ['bulldozer','angel','banana','bear','bench']
+    categorielist = ['angel','banana','bear','bench']
 ### SCRIPT ###
     #Start training loop over model list
     for categorie in categorielist:
