@@ -86,7 +86,7 @@ class Trainer():
         #initial_loss = 0.05
         checkpoint_dir = './checkpoints'
         #log_dir = 'logs'
-        self.checkpoint = os.path.join(checkpoint_dir, 'sketch_rnn_' + self.category + '_weights.{:02d}.hdf5')
+        self.checkpoint = os.path.join(checkpoint_dir, 'sketch_rnn_' + self.category + '_weights.{}.hdf5')
         sketchrnn.train(initial_epoch, train_dataset, val_dataset, self.checkpoint)
 
 if __name__ == '__main__':
