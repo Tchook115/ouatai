@@ -90,13 +90,13 @@ class Trainer():
         sketchrnn.train(initial_epoch, train_dataset, val_dataset, self.checkpoint)
 
 if __name__ == '__main__':
-### GOOGLE STORAGE INFO ###
+    ### GOOGLE STORAGE INFO ###
     BUCKET_TRAIN_DATA = "quickdraw_dataset"
     BUCKET_NAME = "wagon-data-677-bernard"
     WORKING_FOLDERS = ['npz_repo','checkpoints','logs']
-### MODEL LIST TO TRAIN ###
-    categorielist = ['airplane','apple', 'bat', 'bee', 'bird']
-### SCRIPT ###
+    ### MODEL LIST TO TRAIN ###
+    categorielist = ['t-shirt', 'sword', 'church', 'bee', 'bird']
+    ### SCRIPT ###
     #Start training loop over model list
     for categorie in categorielist:
         BLOB_TRAIN_DATA = f"sketchrnn/{categorie}.npz"
