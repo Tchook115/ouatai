@@ -25,9 +25,9 @@ class ActionHelloWorld(Action):
 
         return []
 
-class Drawing(Action):
+class ActionDrawing(Action):
     def name(self) -> Text:
-        return "drawing"
+        return "action_drawing"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
