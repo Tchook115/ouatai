@@ -42,8 +42,9 @@ gcp_submit_training:
 		--runtime-version=${RUNTIME_VERSION} \
 		--region ${REGION} \
 		--stream-logs \
-		--scale-tier=custom \
-		--master-machine-type=n1-standard-8
+		--scale-tier=BASIC_GPU
+		#--master-machine-type=a2-highgpu-1g \
+		#--acceleratorConfig=NVIDIA_TESLA_A100
 
 clean:
 	@rm -f */version.txt

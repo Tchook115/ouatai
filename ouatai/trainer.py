@@ -39,7 +39,6 @@ class Trainer():
         blob.upload_from_filename(localpthfile)
 
     def copy_to_local(self):
-
         storage_client = storage.Client()
         bucket = storage_client.bucket(BUCKET_TRAIN_DATA)
         blob = bucket.blob(BLOB_TRAIN_DATA)
@@ -58,7 +57,7 @@ class Trainer():
             'batch_size': 100, #100
             "num_batches": math.ceil(len(data_train) / 100),
             "epochs": self.epochnb, #100
-            "recurrent_dropout_prob": 0.1, ## 0.0 for gpu lstm
+            "recurrent_dropout_prob": 0.0, ## 0.0 for gpu lstm
             "enc_rnn_size": 256, #256
             "dec_rnn_size": 512, #512
             "z_size": 128, #128
@@ -86,7 +85,7 @@ class Trainer():
         #initial_loss = 0.05
         checkpoint_dir = './checkpoints'
         #log_dir = 'logs'
-        self.checkpoint = os.path.join(checkpoint_dir, 'sketch_rnn_' + self.category + '_weights.{:02d}.hdf5')
+        self.checkpoint = os.path.join(checkpoint_dir, 'sketch_rnn_' + self.category + '_weights.{}.hdf5')
         sketchrnn.train(initial_epoch, train_dataset, val_dataset, self.checkpoint)
 
 if __name__ == '__main__':
@@ -94,6 +93,7 @@ if __name__ == '__main__':
     BUCKET_TRAIN_DATA = "quickdraw_dataset"
     BUCKET_NAME = "wagon-data-677-sdb"
     WORKING_FOLDERS = ['npz_repo','checkpoints','logs']
+<<<<<<< HEAD
     ### MODEL LIST TO TRAIN ###
     categorielist = ['ant',
                      'basket',
@@ -101,6 +101,11 @@ if __name__ == '__main__':
                      'bicycle',
                      'boomerang']
     ### SCRIPT ###
+=======
+### MODEL LIST TO TRAIN ###
+    categorielist = ['angel','banana','bear','bench']
+### SCRIPT ###
+>>>>>>> 79cedf0f889e01241001e3237b13639d362f36aa
     #Start training loop over model list
     for categorie in categorielist:
         BLOB_TRAIN_DATA = f"sketchrnn/{categorie}.npz"
