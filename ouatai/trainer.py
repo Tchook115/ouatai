@@ -94,7 +94,9 @@ if __name__ == '__main__':
     BUCKET_NAME = "wagon-data-677-bernard"
     WORKING_FOLDERS = ['npz_repo','checkpoints','logs']
     ### MODEL LIST TO TRAIN ###
-    categorielist = ['bat', 'candle']
+    categorielist = [
+        'cup',
+        'knife']
     ### SCRIPT ###
 
     #Start training loop over model list
