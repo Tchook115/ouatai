@@ -93,19 +93,12 @@ if __name__ == '__main__':
     BUCKET_TRAIN_DATA = "quickdraw_dataset"
     BUCKET_NAME = "wagon-data-677-sdb"
     WORKING_FOLDERS = ['npz_repo','checkpoints','logs']
-<<<<<<< HEAD
     ### MODEL LIST TO TRAIN ###
-    categorielist = ['ant',
-                     'basket',
-                     'bed',
-                     'bicycle',
-                     'boomerang']
+    categorielist = [
+        'peanut', 'pig', 'pizza', 'rabbit', 'rainbow', 'sailboat', 'scissors',
+        'skateboard', 'snail', 'snowman', 'spider'
+    ]
     ### SCRIPT ###
-=======
-### MODEL LIST TO TRAIN ###
-    categorielist = ['angel','banana','bear','bench']
-### SCRIPT ###
->>>>>>> 79cedf0f889e01241001e3237b13639d362f36aa
     #Start training loop over model list
     for categorie in categorielist:
         BLOB_TRAIN_DATA = f"sketchrnn/{categorie}.npz"
