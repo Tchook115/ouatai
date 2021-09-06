@@ -95,8 +95,8 @@ if __name__ == '__main__':
     WORKING_FOLDERS = ['npz_repo','checkpoints','logs']
     ### MODEL LIST TO TRAIN ###
     categorielist = [
-        'peanut', 'pig', 'pizza', 'rabbit', 'rainbow', 'sailboat', 'scissors',
-        'skateboard', 'snail', 'snowman', 'spider'
+        'star', 'sun', 'table', 'television', 'tornado', 'truck', 'van',
+        'wheel'
     ]
     ### SCRIPT ###
     #Start training loop over model list
