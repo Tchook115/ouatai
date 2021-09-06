@@ -14,6 +14,44 @@ nlu:
     - appear
     - new
 
+- intent: help
+  examples: |
+    - help
+    - manual
+    - how
+    - helps
+    - instructions
+    - how it works?
+
+- intent: category
+  examples: |
+    - category
+    - categories
+    - elements
+    - type
+
+- intent: vertical_position
+  examples: |
+    - vertical position
+    - position vertical
+    - position height
+
+- intent: horizontal_position
+  examples: |
+    - horizontal position
+    - position horizontal
+
+- intent: size
+  examples: |
+    - size
+    - enormous
+    - mini
+
+- intent: color
+  examples: |
+    - color
+    - colorized
+    - colors
 
 - intent: greet
   examples: |
