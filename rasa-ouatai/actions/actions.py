@@ -70,21 +70,38 @@ class ActionDrawing(Action):
             'rifle', 'school bus', 'shorts','smiley face','sock', 'stairs',
             'syringe', 'telephone', 'tree']
 
-        lst_sky = [
-            'airplane', 'bat',  'cloud',
+        lst_sky = ['airplane', 'bat',  'cloud',
             'dragon', 'owl', 'angel', 'diamond', 'moon',
             'parachute', 'rain', 'snowflake', 'zigzag']
 
-        lst_all = [
+        lst_updown = [
             'bee', 'bird', 'butterfly', 'dolphin', 'feather', 'fish', 'ocean',
             'submarine', 'umbrella','whale']
 
-        all_categories = lst_ground.extend(lst_all)
-        all_categories = all_categories.extend(lst_sky)
+        all_categories = lst_ground + lst_updown + lst_sky
 
-        i = 0
+        #big/small categories
+        lst_big = ['airplane', 'church','dragon', 'firetruck', 'train', 'windmill',
+            'The Eiffel Tower','bulldozer', 'bus','camel', 'car','giraffe','mountain',
+            'palm tree','school bus','tree','whale','stairs','submarine']
+
+        lst_medium = ['cloud','dolphin','face','grass','pants', 'sheep', 'skull'\
+                    ,'sword', 't-shirt','angel','bear','bench','broom','cello',\
+                    'crocodile','guitar', 'harp','ladder', 'moon', 'parachute',\
+                    'jail','rain','rifle',  'shorts','umbrella','snowflake']
+
+        lst_small = ['apple', 'bat', 'bee', 'bird', 'bread', 'butterfly',
+            'candle', 'cat', 'crab', 'cup', 'envelope', 'frog',
+            'hammer', 'knife', 'leaf', 'lollipop', 'mushroom', 'owl',
+            'pear', 'postcard', 'radio',  'snake', 'square',
+             'teddy-bear',  'banana',   'book',
+              'cactus','circle', 'cookie',  'diamond', 'donut', 'drums',
+            'eraser', 'feather', 'fish', 'flower','hedgehog', 'hourglass',
+            'lighter', 'mailbox','ocean',   'pencil','pineapple', 'potato',
+            'smiley face','sock','syringe', 'telephone','zigzag']
 
         #default values
+        i = 0
         size = 'medium'
         color = 'black'
         num = 1
@@ -99,22 +116,30 @@ class ActionDrawing(Action):
                  'orange', 'purple', 'gray', 'white', 'gold']
         num_lst = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
-        num_lst_word = ['one', 'two', "three", 'four', 'five', 'six', 'seven', 'eight',
-                    'nine', 'ten']
+        num_lst_word = ['one', 'two', "three", 'four', 'five', 'six', 'seven',
+                     'eight','nine', 'ten']
         vertical_position_lst = ['center', 'top', 'bottom']
         horizontal_position_lst = ['middle', 'left', 'right']
 
-
+        #to be sure the word in the categories we can draw
         for word in all_categories:
             if word in text:
                 i = 1
                 category = word
+                #default position
                 if category in lst_ground:
                     vertical_position = random.choice(['center', 'bottom'])
                 elif category in lst_sky:
                     vertical_position = 'top'
-                elif category in lst_all:
+                elif category in lst_updown:
                     vertical_position = random.choice(vertical_position_lst)
+                #default size
+                if category in lst_big:
+                    size = 'big'
+                elif category in lst_small:
+                    size = 'small'
+
+
 
         if i == 0:
             dispatcher.utter_message(text="I don't know this category")
