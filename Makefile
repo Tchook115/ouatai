@@ -6,7 +6,7 @@
 
 # not required here
 ### GCP Storage - - - - - - - - - - - - - - - - - - - - - -
-BUCKET_NAME=wagon-data-677-noyer
+BUCKET_NAME=wagon-data-677-sdb
 ##### Data  - - - - - - - - - - - - - - - - - - - - - - - -
 BUCKET_TRAIN_DATA_RAW: quickdraw_dataset
 ##### Training  - - - - - - - - - - - - - - - - - - - - - -
@@ -41,7 +41,10 @@ gcp_submit_training:
 		--python-version=${PYTHON_VERSION} \
 		--runtime-version=${RUNTIME_VERSION} \
 		--region ${REGION} \
-		--stream-logs
+		--stream-logs \
+		--scale-tier=BASIC_GPU
+		#--master-machine-type=a2-highgpu-1g \
+		#--acceleratorConfig=NVIDIA_TESLA_A100
 
 clean:
 	@rm -f */version.txt

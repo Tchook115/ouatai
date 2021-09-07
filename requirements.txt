@@ -29,8 +29,12 @@ joblib
 #termcolor
 
 #OUATAI
+google.cloud
 #sys
 #os
 #math
 #time
-tensorflow>=2.5.1
+
+#tensorflow
+#tensorflow>=2.5.1
+#git+https://github.com/stwind/SketchRNN_tf2
