@@ -89,8 +89,8 @@ def make_mpl_path(strokes):
     codes = np.roll(Path.LINETO - strokes[:, -1], 1).astype(int)
     return Path(vertices, codes)
 
-def plot_strokes(ax, strokes, ec="black", no_ticks=True,linewidth = 2):
-    patch = ax.add_patch(PathPatch(make_mpl_path(strokes), lw=linewidth, ec=ec, fc="none"))
+def plot_strokes(ax, strokes, ec="black", no_ticks=True, lw = 1):
+    patch = ax.add_patch(PathPatch(make_mpl_path(strokes), lw=lw, ec=ec, fc="none"))
     if no_ticks:
         ax.set(xticks=[], yticks=[], frame_on=False)
     else:
