@@ -115,7 +115,9 @@ class SketchRNN(object):
 
     def load_weights(self, path):
         self.models["full"].load_weights(path)
+
         #print("Loaded Weights From: {}".format(path))
+
 
     def sample(self, temperature=1.0, greedy=False, z=None):
         seq_len = self.hps["max_seq_len"]
@@ -247,6 +249,7 @@ class SketchRNN(object):
                     metrics["cost"].result(),
                 )
             )
+
             if epoch == 100:
                 model.save_weights(checkpoint.format(epoch))
 

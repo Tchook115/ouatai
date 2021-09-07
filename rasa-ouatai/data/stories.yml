@@ -1,0 +1,70 @@
+version: "2.0"
+
+stories:
+
+- story: draw something path
+  steps:
+  - intent: draw
+  - action: action_drawing
+
+- story: help path
+  steps:
+  - intent: help
+  - action: utter_help
+
+- story: category path
+  steps:
+  - intent: category
+  - action: utter_category
+
+- story: vertical position path
+  steps:
+  - intent: vertical_position
+  - action: utter_vertical_position
+
+- story: horizontal position path
+  steps:
+  - intent: horizontal_position
+  - action: utter_horizontal_position
+
+- story: size path
+  steps:
+  - intent: size
+  - action: utter_size
+
+- story: color path
+  steps:
+  - intent: color
+  - action: utter_color
+
+- story: hello world path
+  steps:
+  - intent: hello_world
+  - action: action_hello_world
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye

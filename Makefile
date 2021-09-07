@@ -8,7 +8,7 @@
 ### GCP Storage - - - - - - - - - - - - - - - - - - - - - -
 BUCKET_NAME=wagon-data-677-sdb
 ##### Data  - - - - - - - - - - - - - - - - - - - - - - - -
-BUCKET_TRAIN_DATA_RAW: quickdraw_dataset
+BUCKET_TRAIN_DATA_RAW = quickdraw_dataset
 ##### Training  - - - - - - - - - - - - - - - - - - - - - -
 # will store the packages uploaded to GCP for the training
 BUCKET_TRAINING_FOLDER = 'trainings'
@@ -24,20 +24,21 @@ RUNTIME_VERSION=2.5
 
 ##### Package params  - - - - - - - - - - - - - - - - - - -
 PACKAGE_NAME=ouatai
-FILENAME=trainer
+TRAINING_FILENAME=trainer
+ILLUSTRATOR_FILENAME= illustrator
 
 ##### Job - - - - - - - - - - - - - - - - - - - - - - - - -
 
 JOB_NAME=ouatai_pipeline_$(shell date +'%Y%m%d_%H%M%S')
 
 run_locally:
-	@python -m ${PACKAGE_NAME}.${FILENAME}
+	@python -m ${PACKAGE_NAME}.${TRAINING_FILENAME}
 
 gcp_submit_training:
 	gcloud ai-platform jobs submit training ${JOB_NAME} \
 		--job-dir gs://${BUCKET_NAME}/${BUCKET_TRAINING_FOLDER} \
 		--package-path ${PACKAGE_NAME} \
-		--module-name ${PACKAGE_NAME}.${FILENAME} \
+		--module-name ${PACKAGE_NAME}.${TRAINING_FILENAME} \
 		--python-version=${PYTHON_VERSION} \
 		--runtime-version=${RUNTIME_VERSION} \
 		--region ${REGION} \
@@ -55,3 +56,5 @@ clean:
 
 run_api:
 	uvicorn API.api:app --reload  # load web server with code autoreload
+run_local_illustration:
+	@python -m ${PACKAGE_NAME}.${ILLUSTRATOR_FILENAME}

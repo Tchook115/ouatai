@@ -55,7 +55,6 @@ def plt_save(filename, dpi=None, autoscale=None, rect=None):
     if filename:
         plt.savefig(filename, dpi=dpi)
 
-
 def update_progress(progress, bar_length=20):
     """
     from https://www.mikulskibartosz.name/how-to-display-a-progress-bar-in-jupyter-notebook/
@@ -92,6 +91,7 @@ def make_mpl_path(strokes):
 
 
 def plot_strokes(ax, strokes, ec="black", no_ticks=True, lw = 2):
+
     patch = ax.add_patch(PathPatch(make_mpl_path(strokes), lw=lw, ec=ec, fc="none"))
     if no_ticks:
         ax.set(xticks=[], yticks=[], frame_on=False)
