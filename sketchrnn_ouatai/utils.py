@@ -55,7 +55,6 @@ def plt_save(filename, dpi=None, autoscale=None, rect=None):
     if filename:
         plt.savefig(filename, dpi=dpi)
 
-
 def update_progress(progress, bar_length=20):
     """
     from https://www.mikulskibartosz.name/how-to-display-a-progress-bar-in-jupyter-notebook/
@@ -89,7 +88,6 @@ def make_mpl_path(strokes):
             vertices[:, 0] *= aspect
     codes = np.roll(Path.LINETO - strokes[:, -1], 1).astype(int)
     return Path(vertices, codes)
-
 
 def plot_strokes(ax, strokes, ec="black", no_ticks=True,linewidth = 2):
     patch = ax.add_patch(PathPatch(make_mpl_path(strokes), lw=linewidth, ec=ec, fc="none"))
