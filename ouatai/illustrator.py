@@ -157,7 +157,6 @@ class Raconte_moi_un_bulldozer:
                         self.list_objects.append([image, (random_position[0],random_position[1])])
                         lst_coords.append((random_position[0],random_position[1],imgwidth,imgheight))
                         break
-        print(len(self.list_objects))
         calque = Raconte_moi_un_bulldozer.construit_calque(self)
 
         
@@ -180,9 +179,9 @@ if __name__ == '__main__':
     ['bulldozer', 'orange', 'medium', 1, 'bottom', 'right'], 
     ['rabbit', 'brown', 'small', 1, 'top', 'left'],]),
     columns=['category', 'color', 'size', 'num', 'vertical_position', 'horizontal_position'])
-    def main():
+    def main(df):
         illustration = Raconte_moi_un_bulldozer()
         package_output = illustration.df_to_calque(df)
         return package_output
     
-    main()
+    main(df)
