@@ -180,7 +180,9 @@ if __name__ == '__main__':
     ['bulldozer', 'orange', 'medium', 1, 'bottom', 'right'], 
     ['rabbit', 'brown', 'small', 1, 'top', 'left'],]),
     columns=['category', 'color', 'size', 'num', 'vertical_position', 'horizontal_position'])
-
-    illustration = Raconte_moi_un_bulldozer()
-    package_output = illustration.df_to_calque(df)
-    print(package_output)
+    def main():
+        illustration = Raconte_moi_un_bulldozer()
+        package_output = illustration.df_to_calque(df)
+        return package_output
+    
+    main()
