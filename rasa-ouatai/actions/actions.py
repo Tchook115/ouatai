@@ -155,6 +155,10 @@ class ActionDrawing(Action):
                     num = num_lst_word.index(word) + 1
                 if word in vertical_position_lst:
                     vertical_position = word
+                if word == 'sky':
+                    vertical_position = 'top'
+                if word == 'ground':
+                    vertical_position = 'bottom'
                 if word in horizontal_position_lst:
                     horizontal_position = word
 
