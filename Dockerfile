@@ -13,4 +13,4 @@ COPY setup.py /setup.py
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-CMD uvicorn api.simple:app --host 0.0.0.0 --port $PORT
+CMD uvicorn API.api:app --host 0.0.0.0 --port $PORT
