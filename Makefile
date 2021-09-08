@@ -60,4 +60,3 @@ run_api:
 
 run_local_illustration:
 	@python -m ${PACKAGE_NAME}.${ILLUSTRATOR_FILENAME}
->>>>>>> 05efc39fa437efa54e8fce4f2841c634e318fff2
