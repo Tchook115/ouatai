@@ -162,15 +162,15 @@ class Raconte_moi_un_bulldozer:
 
 
         #Les traits noirs pour les tests
-        draw = ImageDraw.Draw(calque)
-        for h in range(self.scene_size[0]):
-            draw.point((h,vertical_positions['centre']), fill="black")
-        for h in range(self.scene_size[0]):
-            draw.point((h,vertical_positions['bottom']), fill="black")
-        for v in range(self.scene_size[1]):
-            draw.point((horizontal_positions['middle'], v), fill="black")
-        for v in range(self.scene_size[1]):
-            draw.point((horizontal_positions['right'], v), fill="black")
+        # draw = ImageDraw.Draw(calque)
+        # for h in range(self.scene_size[0]):
+        #     draw.point((h,vertical_positions['centre']), fill="black")
+        # for h in range(self.scene_size[0]):
+        #     draw.point((h,vertical_positions['bottom']), fill="black")
+        # for v in range(self.scene_size[1]):
+        #     draw.point((horizontal_positions['middle'], v), fill="black")
+        # for v in range(self.scene_size[1]):
+        #     draw.point((horizontal_positions['right'], v), fill="black")
 
         return calque, lst_coords
 
