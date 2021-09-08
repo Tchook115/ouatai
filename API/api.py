@@ -30,21 +30,21 @@ app.add_middleware(
 
 @app.get("/")
 
-def main(message):
+async def main(message):
 
     actions = ActionDrawing()
     df = actions.run(message, dispatcher = CollectingDispatcher())
     illustration = illustrator.Raconte_moi_un_bulldozer()
     package_output = illustration.df_to_calque(df)
 
-    byte_calque = StreamingResponse(io.BytesIO(package_output[0].tobytes()),
-                                    media_type="image/png")
-    # dict_output = {
-    #     'image': byte_calque,
-    #     'size_image' : package_output[0].size,
-    #     'coordinates': package_output[1]
-    # }
-
-
-    # return dict_output
-    return byte_calque#, package_output[0].size, package_output[1]
+    byte_calque = io.BytesIO(package_output[0].tobytes())
+    print(str(package_output[1]))
+    dict_output = {
+        # 'image': byte_calque,
+        'size_image' : str(package_output[0].size),
+        'coordinates': str(package_output[1])
+    }
+    return StreamingResponse(
+        content=byte_calque,
+        headers=dict_output,
+        media_type="image/png")

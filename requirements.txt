@@ -38,6 +38,6 @@ joblib
 #OUATAI
 
 rasa==2.8.4
-rasa-sdk=2.8.2
+rasa-sdk==2.8.2
 nltk==3.6.2
 
