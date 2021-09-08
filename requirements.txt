@@ -21,6 +21,11 @@ gcsfs
 google-cloud-storage
 mlflow
 s3fs
+fastapi
+uvicorn
+
+#chat bot
+rasa
 
 # utilities
 six>=1.14
@@ -34,6 +39,7 @@ google.cloud
 #os
 #math
 #time
+
 
 #tensorflow
 #tensorflow>=2.5.1

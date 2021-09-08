@@ -6,7 +6,7 @@
 
 # not required here
 ### GCP Storage - - - - - - - - - - - - - - - - - - - - - -
-BUCKET_NAME=wagon-data-677-sdb
+BUCKET_NAME=wagon-data-677-bernard
 ##### Data  - - - - - - - - - - - - - - - - - - - - - - - -
 BUCKET_TRAIN_DATA_RAW = quickdraw_dataset
 ##### Training  - - - - - - - - - - - - - - - - - - - - - -

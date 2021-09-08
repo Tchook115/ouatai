@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
+from rasa_ouatai import actions
+
 
 app = FastAPI()
 
@@ -19,5 +21,5 @@ app.add_middleware(
 
 
 @app.get("/")
-async def main():
+async def main(query):
     return FileResponse("raw_data/scene.png")

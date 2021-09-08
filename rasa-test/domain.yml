@@ -1,0 +1,107 @@
+version: "2.0"
+
+intents:
+  - hello_world
+  - draw
+  # - count
+  # - adjective-size
+  # - category
+  # - position
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - help
+  - category
+  - vertical_position
+  - horizontal_position
+  - size
+  - color
+
+actions:
+  - action_hello_world
+  - action_drawing
+    channel : myio
+
+responses:
+  utter_greet:
+  - text: "Hey! Do you want to draw something?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_help:
+  - text: "For your drawing, you can choose a category of words, the color,
+           the size, the number of elements, the vertical position and
+           the horizontal position. \n
+            Get more help by typing :\n 1) category \n 2) color \n 3) size \n
+            4) vertical position \n 5) horizontal position"
+
+  utter_category:
+  - text: "Categories : \n- The Eiffel Tower\n- Airplane\n- Angel\n- Apple\n\
+    - Banana\n- Bat\n- Bear\n- Bee\n- Bench\n- Bird\n- Book\n- Bread\n\
+    - Broom\n- Bulldozer\n- Bus\n- Butterfly\n- Cactus\n- Camel\n- Candle\n\
+    - Car\n- Cat\n- Cello\n- Church\n- Circle\n- Cloud\n- Cookie\n- Crab\n\
+    - Crocodile\n- Cup\n- Diamond\n- Dolphin\n- Donut\n- Dragon\n- Drums\n\
+    - Envelope\n- Eraser\n- Face\n- Feather\n- Firetruck\n- Fish\n- Flower\n\
+    - Frog\n- Giraffe\n- Grass\n- Guitar\n- Hammer\n- Harp\n- Hedgehog\n\
+    - Hourglass\n- Jail\n- Knife\n- Ladder\n- Leaf\n- Lighter\n- Lollipop\n\
+    - Mailbox\n- Moon\n- Mountain\n- Mushroom\n- Ocean\n- Owl\n- Palm Tree\n\
+    - Pants\n- Parachute\n- Pear\n- Pencil\n- Pineapple\n- Postcard\n\
+    - Potato\n- Radio\n- Rain\n- Rifle\n- School Bus\n- Sheep\n- Shorts\n\
+    - Skull\n- Smiley Face\n- Snake\n- Snowflake\n- Sock\n- Square\n\
+    - Stairs\n- Submarine\n- Sword\n- Syringe\n- T-Shirt\n- Teddy-Bear\n\
+    - Telephone\n- Train\n- Tree\n- Umbrella\n- Whale\n- Windmill\n- Zigzag"
+
+  utter_vertical_position:
+  - text: "Vertical position : \n
+            - Top\n
+            - Center\n
+            - Bottom"
+
+  utter_horizontal_position:
+  - text: "Horizontal position :\n
+            - Left\n
+            - Middle\n
+            - Right"
+
+  utter_size:
+  - text: "Size :
+            - Small\n
+            - Medium\n
+            - Big"
+
+  utter_color:
+  - text: "Colors :\n
+            - Black\n
+            - Red\n
+            - Blue\n
+            - Green\n
+            - Brown\n
+            - Yellow\n
+            - Orange\n
+            - Purple\n
+            - Gray\n
+            - White\n
+            - Gold"
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
