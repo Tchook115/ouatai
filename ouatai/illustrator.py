@@ -128,7 +128,7 @@ class Raconte_moi_un_bulldozer:
         if lst_coords is None:
             lst_coords = []
         self.list_objects = []
-        vertical_positions = {'top' : 0, 'centre' : int(self.scene_size[1]/3),'bottom' : int(2*self.scene_size[1]/3)}
+        vertical_positions = {'top' : 0, 'center' : int(self.scene_size[1]/3),'bottom' : int(2*self.scene_size[1]/3)}
         horizontal_positions = {'left' : 0, 'middle' : int(self.scene_size[0]/3), 'right' : int(2*self.scene_size[0]/3)}
         sizes = {'small' : 1/2, 'medium' : 1, 'big' : 2}
 
@@ -146,7 +146,7 @@ class Raconte_moi_un_bulldozer:
                 hstart = horizontal_positions[row['horizontal_position']]
                 hstop = hstart + (horizontal_positions['middle'] - imgwidth)
                 vstart = vertical_positions[row['vertical_position']]
-                vstop = vstart + (vertical_positions['centre'] - imgheight)
+                vstop = vstart + (vertical_positions['center'] - imgheight)
                 #liste de tuple : (hpos,vpos,imwidth,imweight)
                 #Check
                 for _ in range(10):
@@ -164,7 +164,7 @@ class Raconte_moi_un_bulldozer:
         #Les traits noirs pour les tests
         # draw = ImageDraw.Draw(calque)
         # for h in range(self.scene_size[0]):
-        #     draw.point((h,vertical_positions['centre']), fill="black")
+        #     draw.point((h,vertical_positions['center']), fill="black")
         # for h in range(self.scene_size[0]):
         #     draw.point((h,vertical_positions['bottom']), fill="black")
         # for v in range(self.scene_size[1]):
@@ -176,7 +176,7 @@ class Raconte_moi_un_bulldozer:
 
 if __name__ == '__main__':
 
-    df = pd.DataFrame(np.array([['cat', 'blue', 'small', 2, 'centre', 'middle'],
+    df = pd.DataFrame(np.array([['cat', 'blue', 'small', 2, 'center', 'middle'],
     ['bulldozer', 'orange', 'medium', 1, 'bottom', 'right'],
     ['rabbit', 'brown', 'small', 1, 'top', 'left'],]),
     columns=['category', 'color', 'size', 'num', 'vertical_position', 'horizontal_position'])

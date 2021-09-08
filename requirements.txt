@@ -37,7 +37,7 @@ joblib
 
 #OUATAI
 
-rasa==2.8.4
+rasa==2.8.5
 rasa-sdk==2.8.2
 nltk==3.6.2
 Ipython
