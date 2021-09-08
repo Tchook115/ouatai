@@ -91,13 +91,10 @@ class Trainer():
 if __name__ == '__main__':
     ### GOOGLE STORAGE INFO ###
     BUCKET_TRAIN_DATA = "quickdraw_dataset"
-    BUCKET_NAME = "wagon-data-677-sdb"
+    BUCKET_NAME = "wagon-data-677-bernard"
     WORKING_FOLDERS = ['npz_repo','checkpoints','logs']
     ### MODEL LIST TO TRAIN ###
-    categorielist = [
-        'peanut', 'pig', 'pizza', 'rabbit', 'rainbow', 'sailboat', 'scissors',
-        'skateboard', 'snail', 'snowman', 'spider'
-    ]
+    categorielist = ['horse']
     ### SCRIPT ###
     #Start training loop over model list
     for categorie in categorielist:

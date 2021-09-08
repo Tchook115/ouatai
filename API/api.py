@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from fastapi.responses import FileResponse
+from rasa_ouatai import actions
+
 
 from rasa_ouatai.actions.actions import ActionDrawing
 from rasa_sdk.executor import CollectingDispatcher
@@ -24,6 +26,7 @@ app.add_middleware(
 
 
 @app.get("/")
+
 def main(message):
 
     actions = ActionDrawing()
