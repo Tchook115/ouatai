@@ -47,4 +47,4 @@ def main(message):
 
 
     # return dict_output
-    return byte_calque, package_output[0].size, package_output[1]
+    return byte_calque#, package_output[0].size, package_output[1]
