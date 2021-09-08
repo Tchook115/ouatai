@@ -112,7 +112,7 @@ class ActionDrawing(Action):
 
 
         #possible choices
-        size_lst = ['medium', 'small', 'big']
+        size_lst = ['medium', 'small', 'big', 'little']
         color_lst = ['black','red','blue','green','brown', 'yellow',
 
                  'orange', 'purple', 'gray', 'white', 'gold', 'pink']
@@ -148,7 +148,10 @@ class ActionDrawing(Action):
         else:
             for word in text:
                 if word in size_lst:
-                    size = word
+                    if word == 'little':
+                        size = 'small'
+                    else:
+                        size = word
                 if word in color_lst:
                     color = word
                 if word in num_lst:
