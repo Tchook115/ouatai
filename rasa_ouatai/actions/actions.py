@@ -43,7 +43,7 @@ class ActionDrawing(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        #dispatcher.utter_message(text="I can draw")
+        dispatcher.utter_message(text="I can draw")
         message = tracker.latest_message.get('text')
 
         text = message.lower()
@@ -180,7 +180,7 @@ class ActionDrawing(Action):
             dispatcher.utter_message(text=' '.join(text))
 
 
-        return []
+        return df
 
 
 # draw = drawing()
