@@ -39,12 +39,12 @@ class ActionDrawing(Action):
         return "action_drawing"
 
 
-    def run(self, message, dispatcher: CollectingDispatcher):
-            # ,tracker: Tracker,
-            # domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+    def run(self, message, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         #dispatcher.utter_message(text="I can draw")
-        # message = tracker.latest_message.get('text')
+        message = tracker.latest_message.get('text')
 
         text = message.lower()
         for punctuation in string.punctuation:
@@ -176,11 +176,11 @@ class ActionDrawing(Action):
                     'horizontal_position': horizontal_position
                 }, index=[0])
 
-            # print(df)
+            print(df)
             dispatcher.utter_message(text=' '.join(text))
 
 
-        return df
+        return []
 
 
 # draw = drawing()
