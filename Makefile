@@ -54,10 +54,10 @@ clean:
 	@rm -fr build dist *.dist-info *.egg-info
 	@rm -fr */*.pyc
 
-<<<<<<< HEAD
+
 run_api:
 	uvicorn API.api:app --reload  # load web server with code autoreload
-=======
+
 run_local_illustration:
 	@python -m ${PACKAGE_NAME}.${ILLUSTRATOR_FILENAME}
->>>>>>> 5a756d16d937d564d2a0716c509b1b83b10c4811
+>>>>>>> 05efc39fa437efa54e8fce4f2841c634e318fff2
