@@ -45,6 +45,7 @@ class ActionDrawing(Action):
 
         #dispatcher.utter_message(text="I can draw")
         # message = tracker.latest_message.get('text')
+
         text = message.lower()
         for punctuation in string.punctuation:
             text = text.replace(punctuation, '')
@@ -113,6 +114,7 @@ class ActionDrawing(Action):
         #possible choices
         size_lst = ['medium', 'small', 'big']
         color_lst = ['black','red','blue','green','brown', 'yellow',
+
                  'orange', 'purple', 'gray', 'white', 'gold', 'pink']
         num_lst = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
@@ -170,11 +172,13 @@ class ActionDrawing(Action):
                     'vertical_position': vertical_position,
                     'horizontal_position': horizontal_position
                 }, index=[0])
+
             # print(df)
             dispatcher.utter_message(text=' '.join(text))
 
 
         return df
+
 
 # draw = drawing()
 # draw.run(CollectingDispatcher,
