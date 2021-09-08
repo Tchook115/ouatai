@@ -35,12 +35,13 @@ class Raconte_moi_un_bulldozer:
         #Test if inputed word is an exiting category
         if word not in words:
             raise 'WordNotFoundError'
-        
+
         #test de variables random
-        best_images = np.load(f'./raw_data/Best_images/best_{word}.npy', allow_pickle=True)
+        images_path = os.path.join('./raw_data/Best_images/', f"best_{word}.npy")
+        best_images = np.load(images_path, allow_pickle=True)
         max_seq_len = best_images[0].shape[0]-1
         data_train = [1 for k in range(10000)]
-        
+
         # SketchRNN Model parameters
         hps = {
             "max_seq_len": max_seq_len,
@@ -61,24 +62,24 @@ class Raconte_moi_un_bulldozer:
             "kl_weight": 0.5,
             'kl_weight_start': 0.01,
         }
-        
+
         # Instantiate model + initiate parameters
         sketchrnn = models.SketchRNN(hps)
         checkpoint = os.path.join('./raw_data/Models/', f"{word}.hdf5")
         sketchrnn.load_weights(checkpoint)
-        
-        # generating a unique image 
+
+        # generating a unique image
         best_pic = random.choice(best_images)
         d = np.expand_dims(best_pic,0)
         z = sketchrnn.models['encoder'].predict(d[:,1:])[0]
         strokes = sketchrnn.sample(z=z, temperature=temperature)
-        
+
         # Generating vectorized unique image
         final_object = utils.to_normal_strokes(strokes)
         figsize = (2*zoom,2*zoom)
         fig, ax = plt.subplots(figsize=figsize);
         utils.plot_strokes(ax, final_object, ec = color, lw = lw);
-        
+
         # Figure to PIL image
         buf = io.BytesIO()
         fig.savefig(buf, format='png', transparent = True)
@@ -86,7 +87,7 @@ class Raconte_moi_un_bulldozer:
         image = Image.open(buf)
         image = image.copy()
         buf.close()
-        
+
         return image
 
     def check_position(hor_pos, vert_pos, imgwidth, imheight, lst_coords):
@@ -124,13 +125,13 @@ class Raconte_moi_un_bulldozer:
         return False
 
     def df_to_calque(self, nlp_df, lst_coords=None):
-        if lst_coords is None: 
+        if lst_coords is None:
             lst_coords = []
         self.list_objects = []
         vertical_positions = {'top' : 0, 'centre' : int(self.scene_size[1]/3),'bottom' : int(2*self.scene_size[1]/3)}
         horizontal_positions = {'left' : 0, 'middle' : int(self.scene_size[0]/3), 'right' : int(2*self.scene_size[0]/3)}
         sizes = {'small' : 1/2, 'medium' : 1, 'big' : 2}
-        
+
         #Inspecting DataFrame and generating images
         for index, row in nlp_df.iterrows():
             for _ in range(int(row['num'])):
@@ -140,7 +141,7 @@ class Raconte_moi_un_bulldozer:
                 size = sizes[row['size']]
                 image = Raconte_moi_un_bulldozer.dessine_moi_un(category, color = color, zoom = size)
                 imgwidth, imgheight = image.size
-                
+
                 #Define position limits in the sub-scene
                 hstart = horizontal_positions[row['horizontal_position']]
                 hstop = hstart + (horizontal_positions['middle'] - imgwidth)
@@ -159,7 +160,7 @@ class Raconte_moi_un_bulldozer:
                         break
         calque = Raconte_moi_un_bulldozer.construit_calque(self)
 
-        
+
         #Les traits noirs pour les tests
         draw = ImageDraw.Draw(calque)
         for h in range(self.scene_size[0]):
@@ -170,18 +171,18 @@ class Raconte_moi_un_bulldozer:
             draw.point((horizontal_positions['middle'], v), fill="black")
         for v in range(self.scene_size[1]):
             draw.point((horizontal_positions['right'], v), fill="black")
-        
+
         return calque, lst_coords
 
 if __name__ == '__main__':
 
     df = pd.DataFrame(np.array([['cat', 'blue', 'small', 2, 'centre', 'middle'],
-    ['bulldozer', 'orange', 'medium', 1, 'bottom', 'right'], 
+    ['bulldozer', 'orange', 'medium', 1, 'bottom', 'right'],
     ['rabbit', 'brown', 'small', 1, 'top', 'left'],]),
     columns=['category', 'color', 'size', 'num', 'vertical_position', 'horizontal_position'])
     def main(df):
         illustration = Raconte_moi_un_bulldozer()
         package_output = illustration.df_to_calque(df)
         return package_output
-    
+
     main(df)

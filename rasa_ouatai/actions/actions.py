@@ -39,12 +39,13 @@ class ActionDrawing(Action):
         return "action_drawing"
 
 
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+    def run(self, message, dispatcher: CollectingDispatcher):
+            # ,tracker: Tracker,
+            # domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         #dispatcher.utter_message(text="I can draw")
-        message = tracker.latest_message.get('text')
+        # message = tracker.latest_message.get('text')
+
         text = message.lower()
         for punctuation in string.punctuation:
             text = text.replace(punctuation, '')
@@ -113,7 +114,8 @@ class ActionDrawing(Action):
         #possible choices
         size_lst = ['medium', 'small', 'big']
         color_lst = ['black','red','blue','green','brown', 'yellow',
-                 'orange', 'purple', 'gray', 'white', 'gold']
+
+                 'orange', 'purple', 'gray', 'white', 'gold', 'pink']
         num_lst = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
         num_lst_word = ['one', 'two', "three", 'four', 'five', 'six', 'seven',
@@ -170,11 +172,13 @@ class ActionDrawing(Action):
                     'vertical_position': vertical_position,
                     'horizontal_position': horizontal_position
                 }, index=[0])
-            print(df)
+
+            # print(df)
             dispatcher.utter_message(text=' '.join(text))
 
 
-        return []
+        return df
+
 
 # draw = drawing()
 # draw.run(CollectingDispatcher,
