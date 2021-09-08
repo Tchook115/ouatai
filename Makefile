@@ -6,7 +6,7 @@
 
 # not required here
 ### GCP Storage - - - - - - - - - - - - - - - - - - - - - -
-BUCKET_NAME=wagon-data-677-sdb
+BUCKET_NAME=wagon-data-677-bernard
 ##### Data  - - - - - - - - - - - - - - - - - - - - - - - -
 BUCKET_TRAIN_DATA_RAW = quickdraw_dataset
 ##### Training  - - - - - - - - - - - - - - - - - - - - - -
@@ -60,4 +60,3 @@ run_api:
 
 run_local_illustration:
 	@python -m ${PACKAGE_NAME}.${ILLUSTRATOR_FILENAME}
->>>>>>> 05efc39fa437efa54e8fce4f2841c634e318fff2

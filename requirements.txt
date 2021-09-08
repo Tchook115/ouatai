@@ -25,15 +25,19 @@ gcsfs
 google-cloud-storage
 mlflow
 s3fs
+
 google.cloud
 fastapi==0.68.1
 uvicorn==0.15.0
+
 
 # utilities
 six>=1.14
 joblib
 
 #OUATAI
+
 rasa==2.8.4
 rasa-sdk=2.8.2
 nltk==3.6.2
+
