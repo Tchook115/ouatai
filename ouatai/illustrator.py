@@ -37,7 +37,8 @@ class Raconte_moi_un_bulldozer:
             raise 'WordNotFoundError'
         
         #test de variables random
-        best_images = np.load(f'./raw_data/Best_images/best_{word}.npy', allow_pickle=True)
+        images_path = os.path.join('./raw_data/Best_images/', f"best_{word}.npy")
+        best_images = np.load(images_path, allow_pickle=True)
         max_seq_len = best_images[0].shape[0]-1
         data_train = [1 for k in range(10000)]
         
@@ -182,6 +183,7 @@ if __name__ == '__main__':
     def main(df):
         illustration = Raconte_moi_un_bulldozer()
         package_output = illustration.df_to_calque(df)
+        print(package_output)
         return package_output
     
     main(df)
