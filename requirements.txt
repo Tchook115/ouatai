@@ -8,6 +8,10 @@ wheel>=0.29
 numpy
 pandas
 scikit-learn
+tensorflow==2.5.1
+tensorflow-estimator==2.5.0
+matplotlib
+seaborn
 
 # tests/linter
 black
@@ -21,20 +25,15 @@ gcsfs
 google-cloud-storage
 mlflow
 s3fs
+google.cloud
+fastapi==0.68.1
+uvicorn==0.15.0
 
 # utilities
 six>=1.14
 joblib
-#memoized-property
-#termcolor
 
 #OUATAI
-google.cloud
-#sys
-#os
-#math
-#time
-
-#tensorflow
-#tensorflow>=2.5.1
-#git+https://github.com/stwind/SketchRNN_tf2
+rasa==2.8.4
+rasa-sdk=2.8.2
+nltk==3.6.2
