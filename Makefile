@@ -60,3 +60,6 @@ run_api:
 
 run_local_illustration:
 	@python -m ${PACKAGE_NAME}.${ILLUSTRATOR_FILENAME}
+
+# streamlit:
+#   @streamlit run app.py
