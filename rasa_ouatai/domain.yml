@@ -1,19 +1,19 @@
 version: "2.0"
 
 intents:
-  - hello_world
+  # - hello_world
   - draw
   # - count
   # - adjective-size
   # - category
   # - position
   - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
+  # - goodbye
+  # - affirm
+  # - deny
+  # - mood_great
+  # - mood_unhappy
+  # - bot_challenge
   - help
   - category
   - vertical_position
@@ -22,28 +22,28 @@ intents:
   - color
 
 actions:
-  - action_hello_world
+  # - action_hello_world
   - action_drawing
 
 responses:
   utter_greet:
   - text: "Hey! Do you want to draw something?"
 
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+  # utter_cheer_up:
+  # - text: "Here is something to cheer you up:"
+  #   image: "https://i.imgur.com/nGF1K8f.jpg"
 
-  utter_did_that_help:
-  - text: "Did that help you?"
+  # utter_did_that_help:
+  # - text: "Did that help you?"
 
-  utter_happy:
-  - text: "Great, carry on!"
+  # utter_happy:
+  # - text: "Great, carry on!"
 
-  utter_goodbye:
-  - text: "Bye"
+  # utter_goodbye:
+  # - text: "Bye"
 
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  # utter_iamabot:
+  # - text: "I am a bot, powered by Rasa."
 
   utter_help:
   - text: "For your drawing, you can choose a category of words, the color,
@@ -53,7 +53,8 @@ responses:
             4) vertical position \n 5) horizontal position"
 
   utter_category:
-  - text: "Categories : \n- The Eiffel Tower\n- Airplane\n- Angel\n- Apple\n\
+  - text: "Categories : \n
+    - The Eiffel Tower\n- Airplane\n- Angel\n- Apple\n\
     - Banana\n- Bat\n- Bear\n- Bee\n- Bench\n- Bird\n- Book\n- Bread\n\
     - Broom\n- Bulldozer\n- Bus\n- Butterfly\n- Cactus\n- Camel\n- Candle\n\
     - Car\n- Cat\n- Cello\n- Church\n- Circle\n- Cloud\n- Cookie\n- Crab\n\
@@ -81,8 +82,8 @@ responses:
             - Right"
 
   utter_size:
-  - text: "Size :
-            - Small\n
+  - text: "Size :\n
+            - Small, Little\n
             - Medium\n
             - Big"
 

@@ -22,7 +22,7 @@ class Raconte_moi_un_bulldozer:
         vert = random.randint(vstart,vstop)
         return hor,vert
 
-    def dessine_moi_un(word, temperature = 0.2, color = 'black', zoom = 1,lw = 2):
+    def dessine_moi_un(word, temperature = 0.2, color = 'black', zoom = 1,lw = 3):
         '''
         This function return a unique generated image of one category, using the pretrained corresponding model.
         '''
@@ -90,7 +90,8 @@ class Raconte_moi_un_bulldozer:
 
         return image
 
-    def check_position(hor_pos, vert_pos, imgwidth, imheight, lst_coords):
+    def check_position(self, hor_pos, vert_pos, imgwidth, imheight,
+                       lst_coords):
         x_min_new = hor_pos
         x_max_new = hor_pos + imgwidth
         y_min_new = vert_pos
@@ -130,7 +131,7 @@ class Raconte_moi_un_bulldozer:
         self.list_objects = []
         vertical_positions = {'top' : 0, 'center' : int(self.scene_size[1]/3),'bottom' : int(2*self.scene_size[1]/3)}
         horizontal_positions = {'left' : 0, 'middle' : int(self.scene_size[0]/3), 'right' : int(2*self.scene_size[0]/3)}
-        sizes = {'small' : 1/2, 'medium' : 1, 'big' : 2}
+        sizes = {'small' : 3/4, 'medium' : 1.5, 'big' : 2.5}
 
         #Inspecting DataFrame and generating images
         for index, row in nlp_df.iterrows():
@@ -153,7 +154,9 @@ class Raconte_moi_un_bulldozer:
                     #Generate random coordinates
                     random_position = Raconte_moi_un_bulldozer.get_random_position(hstart,hstop,vstart,vstop)
                     #check for collision
-                    if Raconte_moi_un_bulldozer.check_position(random_position[0],random_position[1],imgwidth,imgheight,lst_coords):
+                    if Raconte_moi_un_bulldozer.check_position(
+                            self, random_position[0], random_position[1],
+                            imgwidth, imgheight, lst_coords):
                         #add image and its coordinates to list_objects
                         self.list_objects.append([image, (random_position[0],random_position[1])])
                         lst_coords.append((random_position[0],random_position[1],imgwidth,imgheight))
