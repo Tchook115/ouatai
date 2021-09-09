@@ -39,11 +39,12 @@ class ActionDrawing(Action):
         return "action_drawing"
 
 
-    def run(self, message, dispatcher: CollectingDispatcher,
+    def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+            domain: Dict[Text, Any]
+            ) -> List[Dict[Text, Any]]:
 
-        dispatcher.utter_message(text="I can draw")
+
         message = tracker.latest_message.get('text')
 
         text = message.lower()
@@ -176,11 +177,11 @@ class ActionDrawing(Action):
                     'horizontal_position': horizontal_position
                 }, index=[0])
 
-            print(df)
-            dispatcher.utter_message(text=' '.join(text))
+            dispatcher.utter_message(text=f"DataFrame:{category},{color},{size},{num},{vertical_position},{horizontal_position}")
+            dispatcher.utter_message(text="I can draw this")
 
 
-        return df
+        return []
 
 
 # draw = drawing()

@@ -53,7 +53,8 @@ responses:
             4) vertical position \n 5) horizontal position"
 
   utter_category:
-  - text: "Categories : \n- The Eiffel Tower\n- Airplane\n- Angel\n- Apple\n\
+  - text: "Categories : \n
+    - The Eiffel Tower\n- Airplane\n- Angel\n- Apple\n\
     - Banana\n- Bat\n- Bear\n- Bee\n- Bench\n- Bird\n- Book\n- Bread\n\
     - Broom\n- Bulldozer\n- Bus\n- Butterfly\n- Cactus\n- Camel\n- Candle\n\
     - Car\n- Cat\n- Cello\n- Church\n- Circle\n- Cloud\n- Cookie\n- Crab\n\
@@ -81,8 +82,8 @@ responses:
             - Right"
 
   utter_size:
-  - text: "Size :
-            - Small\n
+  - text: "Size :\n
+            - Small, Little\n
             - Medium\n
             - Big"
 
