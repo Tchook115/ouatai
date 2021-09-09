@@ -1,19 +1,19 @@
 version: "2.0"
 
 intents:
-  - hello_world
+  # - hello_world
   - draw
   # - count
   # - adjective-size
   # - category
   # - position
   - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
+  # - goodbye
+  # - affirm
+  # - deny
+  # - mood_great
+  # - mood_unhappy
+  # - bot_challenge
   - help
   - category
   - vertical_position
@@ -22,28 +22,28 @@ intents:
   - color
 
 actions:
-  - action_hello_world
+  # - action_hello_world
   - action_drawing
 
 responses:
   utter_greet:
   - text: "Hey! Do you want to draw something?"
 
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+  # utter_cheer_up:
+  # - text: "Here is something to cheer you up:"
+  #   image: "https://i.imgur.com/nGF1K8f.jpg"
 
-  utter_did_that_help:
-  - text: "Did that help you?"
+  # utter_did_that_help:
+  # - text: "Did that help you?"
 
-  utter_happy:
-  - text: "Great, carry on!"
+  # utter_happy:
+  # - text: "Great, carry on!"
 
-  utter_goodbye:
-  - text: "Bye"
+  # utter_goodbye:
+  # - text: "Bye"
 
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  # utter_iamabot:
+  # - text: "I am a bot, powered by Rasa."
 
   utter_help:
   - text: "For your drawing, you can choose a category of words, the color,

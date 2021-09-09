@@ -60,3 +60,9 @@ run_api:
 
 run_local_illustration:
 	@python -m ${PACKAGE_NAME}.${ILLUSTRATOR_FILENAME}
+
+run_rasa:
+	cd ./rasa_ouatai && rasa run -m models --enable-api
+
+run_rasa_action:
+	cd ./rasa_ouatai && rasa run actions

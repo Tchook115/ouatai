@@ -21,18 +21,18 @@ import random
 #
 
 
-class ActionHelloWorld(Action):
+# class ActionHelloWorld(Action):
 
-    def name(self) -> Text:
-        return "action_hello_world"
+#     def name(self) -> Text:
+#         return "action_hello_world"
 
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        dispatcher.utter_message(text="Hello Alex!")
+#         dispatcher.utter_message(text="Hello Alex!")
 
-        return []
+#         return []
 
 class ActionDrawing(Action):
     def name(self) -> Text:
@@ -69,12 +69,65 @@ class ActionDrawing(Action):
             'cookie','crocodile','donut','drums','eraser','flower','giraffe',\
             'guitar','harp','hedgehog','hourglass','jail','ladder','lighter',\
             'mailbox','palm tree','pencil','pineapple', 'potato','mountain',\
-            'rifle', 'school bus', 'shorts','smiley face','sock', 'stairs',
-            'syringe', 'telephone', 'tree']
+            'rifle', 'school bus', 'shorts','sock',
+            'syringe', 'telephone', 'tree', 'ant', 'basket', 'bed', 'bicycle',\
+                'bucket','bush', 'cake',  'camera',
+                      'candle',
+                      'carrot',
+                      'chair',
+                      'clock', 'cow','elephant',
+                      'mountain',
+                      'house',
+                      'panda',
+                      'stairs',
+                      'tornado',
+                      'sailboat', 'crown',
+                      'dog',
+                      'flamingo',
+                      'fork',
+                      'grapes',
+                      'door',
+                      'hat',
+                      'key',
+                      'fence',
+                      'lightning',
+                      'eyeglasses',
+                      'hamburger',
+                      'mosquito',
+                      'laptop',
+                      'mug',
+                      'onion',
+                      'pig',
+                      'scissors',
+                      'skateboard',
+                      'sock',
+                      'peanut',
+                      'pizza',
+                      'rabbit',
+                      'table',
+                      'television'
+                      ]
 
-        lst_sky = ['airplane', 'bat',  'cloud',
-            'dragon', 'owl', 'angel', 'diamond', 'moon',
-            'parachute', 'rain', 'snowflake', 'zigzag']
+        lst_sky = [
+            'airplane',
+            'bat',
+            'cloud',
+            'dragon',
+            'owl',
+            'angel',
+            'diamond',
+            'moon',
+            'parachute',
+            'rain',
+            'snowflake',
+            'zigzag',
+            'boomerang',
+            'sun',
+            'star',
+            'helicopter',
+            'mermaid',
+            'rainbow'
+        ]
 
         lst_updown = [
             'bee', 'bird', 'butterfly', 'dolphin', 'feather', 'fish', 'ocean',
@@ -83,24 +136,82 @@ class ActionDrawing(Action):
         all_categories = lst_ground + lst_updown + lst_sky
 
         #big/small categories
-        lst_big = ['airplane', 'church','dragon', 'firetruck', 'train', 'windmill',
-            'The Eiffel Tower','bulldozer', 'bus','camel', 'car','giraffe','mountain',
-            'palm tree','school bus','tree','whale','stairs','submarine']
+        lst_big = [
+            'airplane',
+            'church',
+            'dragon',
+            'firetruck',
+            'train',
+            'windmill',
+            'The Eiffel Tower',
+            'bulldozer',
+            'bus',
+            'camel',
+            'car',
+            'giraffe',
+            'mountain',
+            'palm tree',
+            'school bus',
+            'tree',
+            'whale',
+            'stairs',
+            'submarine',
+            'cow',
+            'elephant',
+            'mountain',
+            'house',
+            'panda',
+            'stairs',
+            'tornado',
+            'sailboat',
+            'helicopter',
+            'mermaid',
+            'rainbow',
+            'table',
+            'television'
+        ]
 
         lst_medium = ['cloud','dolphin','face','grass','pants', 'sheep', 'skull'\
                     ,'sword', 't-shirt','angel','bear','bench','broom','cello',\
                     'crocodile','guitar', 'harp','ladder', 'moon', 'parachute',\
-                    'jail','rain','rifle',  'shorts','umbrella','snowflake']
+                    'jail','rain','rifle',  'shorts','umbrella','snowflake', 'bed',\
+                        'bicycle','bush','sun']
 
-        lst_small = ['apple', 'bat', 'bee', 'bird', 'bread', 'butterfly',
-            'candle', 'cat', 'crab', 'cup', 'envelope', 'frog',
-            'hammer', 'knife', 'leaf', 'lollipop', 'mushroom', 'owl',
-            'pear', 'postcard', 'radio',  'snake', 'square',
-             'teddy-bear',  'banana',   'book',
-              'cactus','circle', 'cookie',  'diamond', 'donut', 'drums',
-            'eraser', 'feather', 'fish', 'flower','hedgehog', 'hourglass',
-            'lighter', 'mailbox','ocean',   'pencil','pineapple', 'potato',
-            'smiley face','sock','syringe', 'telephone','zigzag']
+        lst_small = [
+            'apple', 'bat', 'bee', 'bird', 'bread', 'butterfly', 'candle',
+            'cat', 'crab', 'cup', 'envelope', 'frog', 'hammer', 'knife',
+            'leaf', 'lollipop', 'mushroom', 'owl', 'pear', 'postcard', 'radio',
+            'snake', 'square', 'teddy-bear', 'banana', 'book', 'cactus',
+            'circle', 'cookie', 'diamond', 'donut', 'drums', 'eraser',
+            'feather', 'fish', 'flower', 'hedgehog', 'hourglass', 'lighter',
+            'mailbox', 'ocean', 'pencil', 'pineapple', 'potato', 'smiley face',
+            'sock', 'syringe', 'telephone', 'zigzag', 'ant', 'basket',
+            'boomerang', 'bucket','cake', 'camera', 'candle', 'carrot',\
+                 'chair', 'clock','star', 'crown',
+            'dog',
+            'flamingo',
+            'fork',
+            'grapes',
+            'door',
+            'hat',
+            'key',
+            'fence',
+            'lightning',
+            'eyeglasses',
+            'hamburger',
+            'mosquito',
+            'laptop',
+            'mug',
+            'onion',
+            'pig',
+            'scissors',
+            'skateboard',
+            'sock',
+            'peanut',
+            'pizza',
+            'rabbit'
+
+        ]
 
         #default values
         i = 0
